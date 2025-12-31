@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Canvas */
+canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+/* Contenedor inicial */
+.contenedor {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2.5rem;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: aparecer 1.5s ease;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    animation: brillo 3s infinite;
+}
+
+p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 1.5rem;
+}
+
+/* Botón */
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, gold, orange);
+    box-shadow: 0 0 15px gold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px gold;
+}
+
+/* Mensaje final (OCULTO POR DEFECTO) */
+.mensaje-final {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #0f2027, #000);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    z-index: 10;
+    animation: aparecerSuave 2s ease;
+    backdrop-filter: blur(2px);
+}
+
+.mensaje-final.activo {
+    display: flex;
+}
+
+.mensaje-final p {
+    max-width: 850px;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    line-height: 1.9;
+    text-align: center;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+}
+
+/* Animaciones */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes brillo {
+    0%,100% { text-shadow: 0 0 10px gold; }
+    50% { text-shadow: 0 0 25px orange; }
+}
+
+@keyframes aparecerSuave {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Estrellas */
+#stars {
+    z-index: -2;
+}
