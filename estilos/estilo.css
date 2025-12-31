@@ -5,9 +5,9 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+/* ===== BODY ===== */
 body {
     background: black;
-    overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,14 +15,14 @@ body {
     color: white;
 }
 
-/* Canvas */
+/* ===== CANVAS ===== */
 canvas {
     position: fixed;
     inset: 0;
     z-index: -1;
 }
 
-/* Contenedor inicial */
+/* ===== CONTENEDOR INICIAL ===== */
 .contenedor {
     background: rgba(0, 0, 0, 0.6);
     padding: 2.5rem;
@@ -44,7 +44,7 @@ p {
     margin-bottom: 1.5rem;
 }
 
-/* Botón */
+/* ===== BOTÓN ===== */
 button {
     padding: 12px 30px;
     border: none;
@@ -54,7 +54,7 @@ button {
     font-weight: bold;
     background: linear-gradient(45deg, gold, orange);
     box-shadow: 0 0 15px gold;
-    transition: 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
@@ -62,7 +62,7 @@ button:hover {
     box-shadow: 0 0 30px gold;
 }
 
-/* Mensaje final (OCULTO POR DEFECTO) */
+/* ===== MENSAJE FINAL ===== */
 .mensaje-final {
     position: fixed;
     inset: 0;
@@ -72,39 +72,73 @@ button:hover {
     align-items: center;
     padding: 2rem;
     z-index: 10;
-    animation: aparecerSuave 2s ease;
     backdrop-filter: blur(2px);
+
+    /* ✅ CLAVE PARA MÓVIL */
+    overflow-y: auto;
+    padding-top: max(3rem, env(safe-area-inset-top));
 }
 
 .mensaje-final.activo {
     display: flex;
 }
 
+/* TEXTO DEL MENSAJE */
 .mensaje-final p {
     max-width: 850px;
     font-size: clamp(1.1rem, 3vw, 1.4rem);
     line-height: 1.9;
     text-align: center;
     text-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
-/* Animaciones */
+/* ===== ANIMACIONES ===== */
 @keyframes aparecer {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes brillo {
-    0%,100% { text-shadow: 0 0 10px gold; }
-    50% { text-shadow: 0 0 25px orange; }
+    0%, 100% {
+        text-shadow: 0 0 10px gold;
+    }
+    50% {
+        text-shadow: 0 0 25px orange;
+    }
 }
 
 @keyframes aparecerSuave {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Estrellas */
+/* ===== ESTRELLAS ===== */
 #stars {
     z-index: -2;
+}
+
+/* ===== AJUSTES SOLO PARA CELULAR ===== */
+@media (max-width: 600px) {
+    .mensaje-final {
+        align-items: flex-start;
+    }
+
+    .mensaje-final p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
 }
